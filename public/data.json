@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Aloe Vera",
+    "image": "https://i.postimg.cc/JhQT0rq1/glass-aloe-vera-juice-put-wooden-cutting-board.jpg",
+    "category": "succulent",
+    "description": "Aloe Vera is a medicinal plant known for its soothing gel. It requires very little water.",
+    "careLevel": "Low",
+    "wateringFrequency": "Every 7 days",
+    "healthStatus": "Healthy"
+  },
+  {
+    "id": 2,
+    "name": "Boston Fern",
+    "image": "https://i.postimg.cc/QCNS43Sx/tropical-fern-leaves.jpg",
+    "category": "fern",
+    "description": "Boston Ferns love humid environments and indirect light.",
+    "careLevel": "Medium",
+    "wateringFrequency": "Every 3 days",
+    "healthStatus": "Thriving"
+  },
+  {
+    "id": 3,
+    "name": "Peace Lily",
+    "image": "https://i.postimg.cc/rFfWC4v4/side-view-pink-white-color-alstroemeria-flowers-grey-background.jpg",
+    "category": "flowering",
+    "description": "Peace Lilies are beautiful indoor flowering plants that purify air.",
+    "careLevel": "Medium",
+    "wateringFrequency": "Every 5 days",
+    "healthStatus": "Blooming"
+  },
+  {
+    "id": 4,
+    "name": "Jade Plant",
+    "image": "https://img.freepik.com/premium-photo/close-up-plant_1048944-30561056.jpg",
+    "category": "succulent",
+    "description": "Jade Plants are lucky indoor plants with thick, shiny leaves.",
+    "careLevel": "Low",
+    "wateringFrequency": "Every 10 days",
+    "healthStatus": "Healthy"
+  },
+  {
+    "id": 5,
+    "name": "Orchid",
+    "image": "https://i.postimg.cc/zXKrFKtf/nature-elegance-blooming-orchid-arrangement-generated-by-ai.jpg",
+    "category": "flowering",
+    "description": "Orchids are elegant and need careful watering and bright indirect light.",
+    "careLevel": "High",
+    "wateringFrequency": "Every 6 days",
+    "healthStatus": "Delicate"
+  },
+  {
+    "id": 6,
+    "name": "Maidenhair Fern",
+    "image": "https://i.postimg.cc/HxmgKxrg/beautiful-closeup-shot-fern-plants-connected-by-wooden-sticks.jpg",
+    "category": "fern",
+    "description": "This fern is delicate and requires high humidity and regular misting.",
+    "careLevel": "High",
+    "wateringFrequency": "Every 2 days",
+    "healthStatus": "Sensitive"
+  }
+]
