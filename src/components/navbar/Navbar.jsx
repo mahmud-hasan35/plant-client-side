@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sprout, Sun } from "lucide-react";
 import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
@@ -9,12 +9,12 @@ const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Load from localStorage or default to false
+  // Load theme
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
 
-  // Apply data-theme on <html> dynamically
+  // Apply theme
   useEffect(() => {
     const theme = darkMode ? "dark" : "light";
     document.documentElement.setAttribute("data-theme", theme);
@@ -38,42 +38,121 @@ const Navbar = () => {
 
   const navItems = (
     <>
-      <li><NavLink to="/" className="font-semibold">Home</NavLink></li>
-      <li><NavLink to="/all-plants" className="font-semibold">All Plants</NavLink></li>
-      <li><NavLink to="/add-plant" className="font-semibold">Add Plant</NavLink></li>
-      <li><NavLink to="/my-plants" className="font-semibold">My Plants</NavLink></li>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `px-2 py-1 font-semibold transition-colors ${
+              isActive
+                ? "text-green-600 dark:text-green-400"
+                : "text-gray-700 dark:text-gray-200 hover:text-green-500 dark:hover:text-green-300"
+            }`
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/all-plants"
+          className={({ isActive }) =>
+            `px-2 py-1 font-semibold transition-colors ${
+              isActive
+                ? "text-green-600 dark:text-green-400"
+                : "text-gray-700 dark:text-gray-200 hover:text-green-500 dark:hover:text-green-300"
+            }`
+          }
+        >
+          All Plants
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/add-plant"
+          className={({ isActive }) =>
+            `px-2 py-1 font-semibold transition-colors ${
+              isActive
+                ? "text-green-600 dark:text-green-400"
+                : "text-gray-700 dark:text-gray-200 hover:text-green-500 dark:hover:text-green-300"
+            }`
+          }
+        >
+          Add Plant
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/my-plants"
+          className={({ isActive }) =>
+            `px-2 py-1 font-semibold transition-colors ${
+              isActive
+                ? "text-green-600 dark:text-green-400"
+                : "text-gray-700 dark:text-gray-200 hover:text-green-500 dark:hover:text-green-300"
+            }`
+          }
+        >
+          My Plants
+        </NavLink>
+      </li>
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4">
-      <div className="navbar-start">
-        <Link to="/" className="text-2xl font-bold text-green-600">🌱 PlantCare</Link>
-      </div>
+    <div
+      className={`navbar sticky top-0 z-50 px-3 md:px-6 shadow-md transition-colors duration-300 ${
+        darkMode ? "bg-green-950 text-gray-100" : "bg-white text-gray-800"
+      }`}
+    >
+      {/* Brand */}
+     <div className="navbar-start">
+  <Link
+    to="/"
+    className="flex items-center gap-2 text-xl md:text-2xl font-bold text-green-600 dark:text-green-400"
+  >
+    <Sprout className="w-7 h-7 md:w-8 md:h-8 text-green-600 dark:text-green-400" />
+    PlantCare
+  </Link>
+</div>
 
       {/* Menu for large screens */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-2">{navItems}</ul>
+        <ul className="menu menu-horizontal gap-4">{navItems}</ul>
       </div>
 
-      {/* Menu for small screens */}
+      {/* Mobile Menu */}
       <div className="dropdown dropdown-end lg:hidden">
-        <label tabIndex={0} className="btn btn-ghost">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <label tabIndex={0} className="cursor-pointer">
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </label>
-        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+        <ul
+          tabIndex={0}
+          className={`menu menu-sm dropdown-content mt-3 p-3 shadow rounded-box w-40 ${
+            darkMode ? "bg-green-950 text-gray-100" : "bg-white text-gray-800"
+          }`}
+        >
           {navItems}
         </ul>
       </div>
 
-      <div className="navbar-end flex items-center gap-2">
+      {/* Right side */}
+      <div className="navbar-end flex items-center gap-3">
         {/* Dark mode toggle */}
-        <button onClick={() => setDarkMode(!darkMode)} className="btn btn-sm btn-outline">
-          {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-green-800 transition"
+        >
+          {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
         </button>
 
+        {/* Profile / Auth */}
         {user ? (
           <div
             className="relative"
@@ -82,29 +161,45 @@ const Navbar = () => {
             onMouseLeave={() => !isMobile && setShowDropdown(false)}
           >
             <div className="avatar cursor-pointer">
-              <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                <img src={user.photoURL || "https://i.ibb.co/ZYW3VTp/brown-brim.png"} alt="avatar" />
+              <div className="w-9 md:w-10 rounded-full ring ring-green-600 ring-offset-base-100 ring-offset-2">
+                <img
+                  src={user.photoURL || "https://i.ibb.co/ZYW3VTp/brown-brim.png"}
+                  alt="avatar"
+                />
               </div>
             </div>
 
+            {/* Dropdown */}
             <div
-              className={`absolute right-4 top-12 bg-base-100 shadow-lg rounded-box p-2 w-40 z-50 transition-all duration-200 ${
-                showDropdown ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
-              }`}
+              className={`absolute right-4 top-12 shadow-lg rounded-box p-2 w-40 z-50 transition-all duration-200 ${
+                darkMode ? "bg-green-950 text-gray-100" : "bg-white text-gray-800"
+              } ${showDropdown ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}
             >
-              <p className="text-sm font-medium text-center">{user.displayName || user.email}</p>
-              <button
+              <p className="text-sm font-medium text-center">
+                {user.displayName || user.email}
+              </p>
+              <p
                 onClick={handleLogOut}
-                className="btn btn-sm mt-2 text-red-500 w-full"
+                className="mt-2 text-center text-red-500 font-medium cursor-pointer hover:underline"
               >
                 Logout
-              </button>
+              </p>
             </div>
           </div>
         ) : (
-          <div className="space-x-1 md:space-x-2">
-            <Link to="/login" className="btn btn-sm btn-outline">Login</Link>
-            <Link to="/register" className="btn btn-sm btn-outline">Register</Link>
+          <div className="flex gap-3 text-sm md:text-base font-semibold">
+            <Link
+              to="/login"
+              className="text-gray-700 dark:text-gray-200 hover:text-green-600 dark:hover:text-green-400 transition"
+            >
+              Login
+            </Link>
+            <Link
+              to="/register"
+              className="text-gray-700 dark:text-gray-200 hover:text-green-600 dark:hover:text-green-400 transition"
+            >
+              Register
+            </Link>
           </div>
         )}
       </div>
